@@ -1,6 +1,6 @@
 # Dany Azzam website – how to edit
 
-Static site, no build step. Netlify deploys `main` automatically.
+Static site, no build step. GitHub Pages deploys `main` automatically to danyazzamcars.com.
 
 ## Add a car
 1. Save photos to `cars/<new-slug>/01.jpg, 02.jpg, …` (EXIF-rotated, fit in 900x1200, JPEG q76 progressive). Best front 3/4 exterior first, then exterior angles, close-ups, interior. Never reuse a slug.
