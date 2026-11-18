@@ -11,9 +11,21 @@
 <meta property="og:site_name" content="Dany Azzam Cars">
 <meta property="og:title" content="Dany Azzam Cars | داني عزام للسيارات">
 <meta property="og:description" content="Clean-Carfax American cars in Lebanon · سيارات أميركية، كارفاكس نظيف">
-<meta property="og:image" content="https://danyazzamcars.com/cars/velar/01.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoDealer", "name": "Dany Azzam Cars", "alternateName": ["Dany Azzam", "Dany Azzam Cars 4 All", "Danny Azzam Cars", "داني عزام", "داني عزام للسيارات"], "url": "https://danyazzamcars.com/", "logo": "https://danyazzamcars.com/cars/velar/01.jpg", "image": "https://danyazzamcars.com/cars/velar/01.jpg", "description": "Clean-Carfax used American cars in Lebanon: Range Rover, BMW, Porsche and more.", "telephone": "+96170228556", "address": {"@type": "PostalAddress", "streetAddress": "Mirna El Chalouhi Highway, after Gallery El Ittihad", "addressCountry": "LB"}, "hasMap": "https://share.google/y38o84xDJ2AX7Q6ct", "sameAs": ["https://www.instagram.com/danyazzamcars4all_/", "https://www.tiktok.com/@danyazzamcars4all", "https://www.facebook.com/share/1EGvjVhNGa/"]}</script>
+<meta property="og:image" content="https://danyazzamcars.com/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoDealer", "name": "Dany Azzam Cars", "alternateName": ["Dany Azzam", "Dany Azzam Cars 4 All", "Danny Azzam Cars", "داني عزام", "داني عزام للسيارات"], "url": "https://danyazzamcars.com/", "logo": "https://danyazzamcars.com/logo.png", "image": "https://danyazzamcars.com/share.jpg", "description": "Clean-Carfax used American cars in Lebanon: Range Rover, BMW, Porsche and more.", "telephone": "+96170228556", "address": {"@type": "PostalAddress", "streetAddress": "Mirna El Chalouhi Highway, after Gallery El Ittihad", "addressCountry": "LB"}, "hasMap": "https://share.google/y38o84xDJ2AX7Q6ct", "sameAs": ["https://www.instagram.com/danyazzamcars4all_/", "https://www.tiktok.com/@danyazzamcars4all", "https://www.facebook.com/share/1EGvjVhNGa/"]}</script>
 <meta name="theme-color" content="#000000">
+<script>
+/* 3D intro switch: hide the flat logo while three.js loads; if it isn't running within 4s (slow network, no WebGL), show the flat logo instead */
+(function(){try{
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var c=document.createElement("canvas");if(!(c.getContext("webgl2")||c.getContext("webgl")))return;
+  var d=document.documentElement;d.classList.add("r3d-wait");
+  setTimeout(function(){d.classList.remove("r3d-wait")},4000);
+}catch(e){}})();
+</script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap">
@@ -55,7 +67,13 @@ html[lang="en"] .lang{font-family:var(--arabic)}
 
 /* Intro */
 .intro{position:relative;min-height:92svh;display:grid;place-items:center;overflow:hidden;perspective:1100px;isolation:isolate}
-#warp{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+#warp,#road{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+#road{display:none}
+html.r3d #road{display:block}
+html.r3d #warp{display:none}
+html.r3d-wait .logo3d,html.r3d .logo3d{visibility:hidden}
+html.r3d .tag{text-shadow:0 0 12px #000,0 0 4px #000}
+html.r3d .intro::after{background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75) 100%)}
 .intro::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,transparent 30%,#000 78%)}
 .stage{display:grid;justify-items:center;gap:22px;width:min(560px,86vw);transform-style:preserve-3d;padding-block:90px 40px}
 .logo3d{position:relative;width:100%;transform-style:preserve-3d;will-change:transform}
@@ -183,6 +201,61 @@ html[dir="rtl"] .fcol h4{font-family:var(--arabic);letter-spacing:.04em;font-siz
 .ltr{direction:ltr;unicode-bidi:isolate}
 .fbottom{border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding-block:20px calc(24px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.85rem}
 
+/* Latest cars on home */
+.latest{padding-block:72px 8px}
+.latest .head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.latest .head > div{display:grid;gap:8px}
+.latest .more{color:var(--soft);text-decoration:none;font-size:.95rem;border-bottom:1px solid var(--line);padding-bottom:2px}
+.latest .more:hover{color:var(--ink)}
+.latest .grid{padding-block:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:820px;margin-inline:auto}
+.latest .head{max-width:820px;margin-inline:auto}
+.latest .card{display:flex;flex-direction:column}
+.latest .cbody{padding:14px 16px 16px;gap:10px;flex:1;grid-template-rows:auto auto 1fr}
+.latest .cfoot{align-self:end}
+.latest .cname b{font-size:1.1rem}
+.latest .cname span{font-size:.85rem}
+.latest .cprice{font-size:1.25rem}
+.latest .arrow{width:36px;height:36px}
+@media (max-width:560px){
+  .latest .grid{gap:10px}
+  .latest .cbody{padding:10px 10px 12px;gap:6px}
+  .latest .cname{gap:2px 6px}
+  .latest .cname b{font-size:.95rem}
+  .latest .cname span{font-size:.75rem;white-space:normal}
+  .latest .odo{font-size:.8rem;gap:6px}
+  .latest .odo svg{width:16px;height:16px}
+  .latest .odo small,.latest .pcount,.latest .arrow{display:none}
+  .latest .cfoot{padding-top:8px}
+  .latest .cprice{font-size:1.05rem}
+  .latest .chip{top:8px;inset-inline-start:8px;font-size:.6rem;padding:3px 8px 3px 6px}
+  .latest .chip svg{width:13px;height:13px}
+}
+
+/* Sort */
+.sort{position:relative;flex:none;display:flex;align-items:center}
+.sort select{appearance:none;-webkit-appearance:none;background:var(--raise);border:1px solid var(--line);color:var(--ink);border-radius:999px;min-height:52px;padding:0 38px 0 16px;font:inherit;font-size:.9rem;cursor:pointer;max-width:46vw}
+html[dir="rtl"] .sort select{padding:0 16px 0 38px}
+.sort svg{position:absolute;inset-inline-end:14px;width:16px;height:16px;color:var(--muted);pointer-events:none}
+.sort select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+@media (max-width:560px){.found{display:none}}
+
+/* Sold / on the way */
+.chip.sold{background:rgba(255,255,255,.92);color:#000;border-color:#fff}
+.chip.soon{background:rgba(232,176,75,.2);border-color:rgba(232,176,75,.6);color:#F3CF8A}
+.chip.soon svg{color:#F3CF8A}
+.card.is-sold .cimg img{filter:grayscale(1) brightness(.55)}
+.card.is-sold .cprice{color:var(--muted);font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* Share */
+.dtitle{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.share{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(255,255,255,.3);color:var(--ink);border-radius:999px;min-height:44px;padding:4px 16px;flex:none;font-size:.9rem}
+.share svg{width:18px;height:18px}
+
+/* Floating WhatsApp */
+.fab{position:fixed;z-index:20;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-end:max(18px,env(safe-area-inset-right,0px));width:60px;height:60px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 8px 28px rgba(0,0,0,.55);transition:transform .25s}
+.fab:hover{transform:scale(1.07)}
+.fab svg{width:32px;height:32px}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}html{scroll-behavior:auto}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
@@ -201,6 +274,7 @@ html[dir="rtl"] .fcol h4{font-family:var(--arabic);letter-spacing:.04em;font-siz
 <main id="viewHome">
   <section class="intro" id="intro">
     <h1 class="sr-only">Dany Azzam Cars – داني عزام للسيارات: clean-Carfax American cars in Lebanon</h1>
+    <canvas id="road" aria-hidden="true"></canvas>
     <canvas id="warp" aria-hidden="true"></canvas>
     <div class="stage">
       <div class="logo3d" id="logo">
@@ -211,6 +285,14 @@ html[dir="rtl"] .fcol h4{font-family:var(--arabic);letter-spacing:.04em;font-siz
       <a class="go" href="#collection"><span data-t="go"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="scroll">SCROLL</div>
+  </section>
+
+  <section class="latest wrap" id="latest">
+    <div class="head">
+      <div><div class="eyebrow">New arrivals</div><h2 class="title" data-t="latestTitle"></h2></div>
+      <a class="more" href="#collection" data-t="viewCol"></a>
+    </div>
+    <div class="grid" id="latestGrid"></div>
   </section>
 
   <section class="why wrap">
@@ -243,6 +325,10 @@ html[dir="rtl"] .fcol h4{font-family:var(--arabic);letter-spacing:.04em;font-siz
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <input id="q" type="search" autocomplete="off">
     </label>
+    <label class="sort"><span class="sr-only" data-t="sortLabel"></span>
+      <select id="sort"></select>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </label>
     <span class="found" id="found"></span>
   </div></div>
   <section class="wrap"><div class="grid" id="grid"></div></section>
@@ -257,6 +343,8 @@ html[dir="rtl"] .fcol h4{font-family:var(--arabic);letter-spacing:.04em;font-siz
   </div>
   <div class="wrap fbottom"><span data-t="fCopy"></span><span>Cars 4 All</span></div>
 </footer>
+
+<a class="fab" id="fab" target="_blank" rel="noopener"></a>
 
 <script>
 const PHONE="96170228556", PHONE_TXT="70 228 556";
@@ -277,23 +365,33 @@ const I={
  star:S('<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8L3.5 9.7l5.9-.9z"/>'),
  badge:S('<circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.6L7.5 21l4.5-2.5 4.5 2.5-1.3-7.4"/><path d="M10 9l1.4 1.4L14.2 7.6"/>')
 };
+I.share=S('<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/>');
+I.truck=S('<path d="M3 6h11v10H3zM14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>');
+// Arabic counting: 1 and 2 have their own words, 3-10 take the plural, 11+ take the singular
+const arN=(n,one,two,few,many)=>n===1?one:n===2?two:n>=3&&n<=10?n+" "+few:n+" "+many;
 const T={
  ar:{dir:"rtl",lang:"English",home:"الرئيسية",tag:"سيارات أميركية · كارفاكس نظيف · لبنان",go:"شوف المجموعة",
+   latestTitle:"آخر السيارات",sortLabel:"ترتيب",sorts:["الأحدث","السعر: الأرخص أول","السعر: الأغلى أول","السنة: الأجدد أول","الأقل كيلومترات"],
+   sold:"مباعة",soon:"عالطريق",reserve:"احجزها على واتساب",askSimilar:"بدّك متلها؟ اسأل",share:"شارك",copied:"انتسخ الرابط",
+   msgSoon:c=>"مرحبا، بدي احجز "+c+".",msgSold:c=>"مرحبا، شفت "+c+" وصارت مباعة. في عندكن شي متلها؟",
    whyTitle:"ليش تختارنا؟",
    why:[["Clean Carfax","كل سيارة عنا تقرير كارفاكس نظيف: بلا حوادث، والعدّاد أصلي.","shield"],["تشكيلة مميّزة","منختار كل سيارة بإيدينا من أميركا، ماركات متل BMW ورينج روفر وبورش.","star"],["جودة مضمونة","منفحص كل سيارة قبل ما توصل عالمعرض، ومنعطيك كل التفاصيل بصراحة.","badge"]],
-   colTitle:"المجموعة",teaserTxt:"سيارات أميركية نظيفة، جاهزة تشوفها وتجرّبها.",viewCol:"شوف كل السيارات",avail:n=>n+" سيارات متوفرة",
-   colSub:"اضغط على أي سيارة لتشوف كل الصور والمواصفات.",search:"دوّر حسب الماركة، الموديل أو السنة",found:n=>n+" نتيجة",none:"ما لقينا سيارة. جرّب كلمة تانية.",
-   photos:n=>n+" صورة",clean:"Clean Carfax",close:"سكّر",ask:"اسأل على واتساب",call:"اتصل",
+   colTitle:"المجموعة",teaserTxt:"سيارات أميركية نظيفة، جاهزة تشوفها وتجرّبها.",viewCol:"شوف كل السيارات",avail:n=>arN(n,"سيارة وحدة متوفرة","سيارتين متوفرين","سيارات متوفرة","سيارة متوفرة"),
+   colSub:"اضغط على أي سيارة لتشوف كل الصور والمواصفات.",search:"دوّر حسب الماركة، الموديل أو السنة",found:n=>arN(n,"نتيجة وحدة","نتيجتين","نتائج","نتيجة"),none:"ما لقينا سيارة. جرّب كلمة تانية.",
+   photos:n=>arN(n,"صورة وحدة","صورتين","صور","صورة"),clean:"Clean Carfax",close:"سكّر",ask:"اسأل على واتساب",call:"اتصل",
    specs:["السنة","اللون","اللون من جوّا","المحرك","المسافة","الجير"],tbd:"قريباً",
    msg:c=>"مرحبا، بدي اسأل عن "+c+".",
    fTag:"وجهتك الموثوقة لسيارات أميركية نظيفة، كارفاكس نظيف.",fQuick:"روابط سريعة",fContact:"تواصل",fFollow:"تابعنا",fCopy:"© 2026 Dany Azzam. جميع الحقوق محفوظة.",
    ig:"إنستغرام",fb:"فيسبوك",tt:"تيك توك",wa:"واتساب",locTxt:"أوتوستراد ميرنا الشالوحي، بعد غاليري الاتحاد"},
  en:{dir:"ltr",lang:"عربي",home:"Home",tag:"American imports · Clean Carfax · Lebanon",go:"See the collection",
+   latestTitle:"Latest arrivals",sortLabel:"Sort",sorts:["Newest","Price: low to high","Price: high to low","Year: newest first","Lowest mileage"],
+   sold:"Sold",soon:"On the way",reserve:"Reserve on WhatsApp",askSimilar:"Want one like it? Ask",share:"Share",copied:"Link copied",
+   msgSoon:c=>"Hello, I want to reserve the "+c+".",msgSold:c=>"Hello, I saw the "+c+" is sold. Do you have something similar?",
    whyTitle:"Why choose us",
    why:[["Clean Carfax","Every car comes with a clean Carfax report: no accidents, original mileage.","shield"],["Premium Selection","We hand-pick every car in the US, from BMW and Range Rover to Porsche.","star"],["Certified Quality","Each car is checked before it reaches the showroom, and we give you every detail upfront.","badge"]],
-   colTitle:"The Collection",teaserTxt:"Clean American cars, ready to see and test drive.",viewCol:"View all cars",avail:n=>n+" cars available",
+   colTitle:"The Collection",teaserTxt:"Clean American cars, ready to see and test drive.",viewCol:"View all cars",avail:n=>n+(n===1?" car available":" cars available"),
    colSub:"Tap any car to see every photo and the full specs.",search:"Search by make, model or year",found:n=>n+(n==1?" result":" results"),none:"No cars found. Try another word.",
-   photos:n=>n+" photos",clean:"Clean Carfax",close:"Close",ask:"Ask on WhatsApp",call:"Call",
+   photos:n=>n+(n===1?" photo":" photos"),clean:"Clean Carfax",close:"Close",ask:"Ask on WhatsApp",call:"Call",
    specs:["Year","Color","Interior","Engine","Mileage","Gearbox"],tbd:"Soon",
    msg:c=>"Hello, I want to ask about "+c+".",
    fTag:"Your trusted destination for clean-Carfax American cars.",fQuick:"Quick links",fContact:"Contact",fFollow:"Follow us",fCopy:"© 2026 Dany Azzam. All rights reserved.",
@@ -328,72 +426,147 @@ function carLine(c){
 }
 const norm=s=>s.toLowerCase().replace(/[أإآ]/g,"ا").replace(/ي/g,"ى").replace(/\s+/g," ");
 
+// a car's link name comes from its photo folder, e.g. cars/velar/01.jpg -> "velar" -> danyazzamcars.com/#car/velar
+const slug=c=>c.photos[0].split("/")[1];
+const carLink=c=>location.origin+location.pathname+"#car/"+slug(c);
+const forSale=()=>CARS.filter(c=>!c.sold);
+function statusChip(c){
+  const t=T[lang];
+  if(c.sold)return '<span class="chip sold">'+t.sold+'</span>';
+  if(c.soon)return '<span class="chip soon">'+I.truck+t.soon+'</span>';
+  return '<span class="chip">'+I.check+t.clean+'</span>';
+}
+
 function cardHTML(c){
   const t=T[lang],i=CARS.indexOf(c);
-  return '<button class="card" data-car="'+i+'"><div class="cimg"><img src="'+c.photos[0]+'" alt="'+fullName(c)+'" loading="lazy">'+
-   '<span class="chip">'+I.check+t.clean+'</span><span class="pcount">'+I.cam+t.photos(c.photos.length)+'</span></div>'+
+  return '<button class="card'+(c.sold?' is-sold':'')+'" data-car="'+i+'"><div class="cimg"><img src="'+c.photos[0]+'" alt="'+fullName(c)+'" loading="lazy">'+
+   statusChip(c)+'<span class="pcount">'+I.cam+t.photos(c.photos.length)+'</span></div>'+
    '<div class="cbody"><h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
    '<div class="odo">'+I.odo+'<span>'+fmt(c.km)+' km</span><small>· '+fmt(c.mi)+' mi</small></div>'+
-   '<div class="cfoot"><span class="cprice">$'+fmt(c.price)+'</span><span class="arrow">'+I.arrow+'</span></div></div></button>';
+   '<div class="cfoot"><span class="cprice">'+(c.sold?t.sold:'$'+fmt(c.price))+'</span><span class="arrow">'+I.arrow+'</span></div></div></button>';
 }
-function drawGrid(){
-  const t=T[lang],q=norm($("q").value.trim());
-  const list=CARS.filter(c=>!q||q.split(" ").every(w=>norm([fullName(c),c.year,c.kw,c.color.ar,c.color.en].join(" ")).includes(w)));
-  $("found").textContent=t.found(list.length);
-  $("grid").innerHTML=list.length?list.map(cardHTML).join(""):'<div class="empty">'+t.none+'</div>';
-  if(!reduce)document.querySelectorAll(".card").forEach(el=>{
+function tilt(){
+  if(reduce)return;
+  document.querySelectorAll(".card").forEach(el=>{
     el.onpointermove=e=>{if(e.pointerType!=="mouse")return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform="rotateY("+(x*8)+"deg) rotateX("+(-y*6)+"deg) translateZ(4px)"};
     el.onpointerleave=()=>el.style.transform="";
   });
+}
+const SORTS=[
+  null,
+  (a,b)=>a.price-b.price,
+  (a,b)=>b.price-a.price,
+  (a,b)=>(+b.year||0)-(+a.year||0),
+  (a,b)=>a.km-b.km
+];
+function drawGrid(){
+  const t=T[lang],q=norm($("q").value.trim()),by=SORTS[+$("sort").value||0];
+  let list=CARS.filter(c=>!q||q.split(" ").every(w=>norm([fullName(c),c.year,c.kw,c.color.ar,c.color.en].join(" ")).includes(w)));
+  if(by)list=list.slice().sort(by);
+  list=list.filter(c=>!c.sold).concat(list.filter(c=>c.sold)); // sold cars always last
+  $("found").textContent=t.found(list.length);
+  $("grid").innerHTML=list.length?list.map(cardHTML).join(""):'<div class="empty">'+t.none+'</div>';
+  tilt();
+}
+function drawLatest(){
+  const list=forSale().slice(0,4);
+  $("latest").hidden=!list.length;
+  $("latestGrid").innerHTML=list.map(cardHTML).join("");
+  tilt();
 }
 function render(){
   const t=T[lang],d=document.documentElement;d.lang=lang;d.dir=t.dir;
   $("langBtn").textContent=t.lang;
   document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t[el.dataset.t]);
   $("q").placeholder=t.search;
-  $("teaserCount").textContent=t.avail(CARS.length);
+  const sv=$("sort").value||"0";
+  $("sort").innerHTML=t.sorts.map((s,j)=>'<option value="'+j+'">'+s+'</option>').join("");
+  $("sort").value=sv;$("sort").setAttribute("aria-label",t.sortLabel);
+  $("teaserCount").textContent=t.avail(forSale().length);
+  $("fab").href=wa(lang==="ar"?"مرحبا":"Hello");$("fab").innerHTML=I.wa;$("fab").setAttribute("aria-label",t.wa);
   $("pillars").innerHTML=t.why.map(w=>'<div class="pillar"><div class="ic">'+I[w[2]]+'</div><h3>'+w[0]+'</h3><p>'+w[1]+'</p></div>').join("");
   const li=(h,ic,txt,cls,blank)=>'<li><a href="'+h+'"'+(blank?' target="_blank" rel="noopener"':'')+'>'+(ic||'')+'<span class="'+(cls||'')+'">'+txt+'</span></a></li>';
   $("fQuickList").innerHTML=li("#home","",t.home)+li("#collection","",t.colTitle)+li("#contact","",t.fContact);
   $("fContactList").innerHTML=li(MAP,I.pin,t.locTxt,"",1)+li("tel:+"+PHONE,I.ph,"(+961) "+PHONE_TXT,"ltr")+li(wa(lang==="ar"?"مرحبا":"Hello"),I.wa,t.wa+' · <span class="ltr">'+PHONE_TXT+'</span>',"",1);
   $("fFollowList").innerHTML=li(IG,I.ig,t.ig,"",1)+li(FB,I.fb,t.fb,"",1)+li(TT,I.tt,t.tt,"",1);
-  drawGrid();
+  drawGrid();drawLatest();
+  const open=document.querySelector(".detail");
+  if(open)openCar(+open.dataset.i); // redraw an open car in the new language
 }
 
+let fromSite=false; // true when the car was opened by tapping a card here (so Close = go back)
+function closeDetail(){
+  const g=document.querySelector(".detail");
+  if(g){g.remove();document.body.style.overflow=""}
+}
+function dismiss(){
+  if(fromSite){fromSite=false;history.back()}
+  else location.replace("#collection");
+}
 function openCar(i){
+  closeDetail();
   const c=CARS[i],t=T[lang],g=document.createElement("div");
+  g.dataset.i=i;
   g.className="detail";g.setAttribute("role","dialog");g.setAttribute("aria-modal","true");g.setAttribute("aria-label",fullName(c));
   const vals=[c.year,val(c,"color"),val(c,"interior"),c.engine,fmt(c.km)+" km · "+fmt(c.mi)+" mi",val(c,"gear")];
   g.innerHTML='<div class="dbar"><span id="gpos">1 / '+c.photos.length+'</span><button class="dclose" id="dclose">'+t.close+'</button></div><div class="dwrap">'+
    '<div class="track" id="track">'+c.photos.map((p,j)=>'<img src="'+p+'" alt="'+fullName(c)+' '+(j+1)+'"'+(j>1?' loading="lazy"':'')+'>').join("")+'</div>'+
    '<div class="thumbs" id="thumbs">'+c.photos.map((p,j)=>'<button data-j="'+j+'" aria-current="'+(j===0)+'" aria-label="'+(j+1)+'"><img src="'+p+'" alt="" loading="lazy"></button>').join("")+'</div>'+
-   '<div class="dinfo"><span class="chip" style="position:static;justify-self:start">'+I.check+t.clean+'</span>'+
-   '<h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
-   '<div class="cfoot" style="border:0;padding:0"><span class="cprice">$'+fmt(c.price)+'</span></div>'+
+   '<div class="dinfo"><div style="display:flex;gap:8px;flex-wrap:wrap">'+
+     (c.sold||c.soon?statusChip(c).replace('class="chip','style="position:static" class="chip'):'')+
+     '<span class="chip" style="position:static">'+I.check+t.clean+'</span></div>'+
+   '<div class="dtitle"><h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
+     '<button class="share" id="dshare">'+I.share+'<span>'+t.share+'</span></button></div>'+
+   '<div class="cfoot" style="border:0;padding:0"><span class="cprice">'+(c.sold?t.sold:'$'+fmt(c.price))+'</span></div>'+
    '<div class="feats">'+c.feats[lang].map(f=>"<span>"+f+"</span>").join("")+'</div>'+
    '<div class="specs">'+t.specs.map((s,j)=>"<div><span>"+s+"</span><b"+(j===4||j===3?' class="ltr"':'')+">"+(vals[j]||t.tbd)+"</b></div>").join("")+'</div>'+
-   '<div class="btns"><a class="btn solid" target="_blank" rel="noopener" href="'+wa(t.msg(carLine(c)))+'">'+I.wa+t.ask+'</a><a class="btn" href="tel:+'+PHONE+'">'+I.ph+t.call+'</a></div></div></div>';
+   '<div class="btns"><a class="btn solid" target="_blank" rel="noopener" href="'+
+     wa((c.sold?t.msgSold:c.soon?t.msgSoon:t.msg)(carLine(c)))+'">'+I.wa+(c.sold?t.askSimilar:c.soon?t.reserve:t.ask)+'</a>'+
+     '<a class="btn" href="tel:+'+PHONE+'">'+I.ph+t.call+'</a></div></div></div>';
   document.body.appendChild(g);document.body.style.overflow="hidden";
-  const tr=$("track"),th=$("thumbs"),close=()=>{g.remove();document.body.style.overflow=""};
-  $("dclose").onclick=close;$("dclose").focus();
-  g.addEventListener("keydown",e=>{if(e.key==="Escape")close();if(e.key==="ArrowRight")tr.scrollBy({left:tr.clientWidth});if(e.key==="ArrowLeft")tr.scrollBy({left:-tr.clientWidth})});
+  const tr=$("track"),th=$("thumbs");
+  $("dclose").onclick=dismiss;$("dclose").focus();
+  $("dshare").onclick=async()=>{
+    const url=carLink(c),lbl=$("dshare").querySelector("span");
+    try{
+      if(navigator.share){await navigator.share({title:fullName(c)+(c.year?" "+c.year:""),url});return}
+      await navigator.clipboard.writeText(url);
+    }catch(e){if(e&&e.name==="AbortError")return;prompt(t.share,url);return}
+    lbl.textContent=t.copied;setTimeout(()=>{lbl.textContent=t.share},2000);
+  };
+  g.addEventListener("keydown",e=>{if(e.key==="Escape")dismiss();if(e.key==="ArrowRight")tr.scrollBy({left:tr.clientWidth});if(e.key==="ArrowLeft")tr.scrollBy({left:-tr.clientWidth})});
   th.onclick=e=>{const b=e.target.closest("[data-j]");if(b)tr.scrollTo({left:+b.dataset.j*tr.clientWidth,behavior:reduce?"auto":"smooth"})};
   let last=0;tr.addEventListener("scroll",()=>{const j=Math.round(tr.scrollLeft/tr.clientWidth);if(j===last)return;last=j;
     $("gpos").textContent=(j+1)+" / "+c.photos.length;
     th.querySelectorAll("button").forEach((b,k)=>b.setAttribute("aria-current",k===j));
     th.children[j]&&th.children[j].scrollIntoView({block:"nearest",inline:"center"})},{passive:true});
 }
-document.addEventListener("click",e=>{const b=e.target.closest("[data-car]");if(b)openCar(+b.dataset.car)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-car]");if(b){fromSite=true;location.hash="car/"+slug(CARS[+b.dataset.car])}});
 $("q").addEventListener("input",drawGrid);
+$("sort").addEventListener("change",drawGrid);
 $("langBtn").onclick=()=>{lang=lang==="ar"?"en":"ar";try{localStorage.setItem("da-lang",lang)}catch(e){}render()};
 
-/* routing */
-function route(){
-  const h=location.hash.slice(1),col=h==="collection";
-  if(h==="contact"){ $("contact").scrollIntoView({behavior:reduce?"auto":"smooth"});return }
+/* routing: #collection, #contact, #car/<slug>; anything else = home */
+let view="";
+function showView(col){
+  const v=col?"col":"home";
+  if(v===view)return;
+  view=v;
   $("viewHome").hidden=col;$("viewCol").hidden=!col;
   $("navHome").setAttribute("aria-current",col?"false":"page");$("navCol").setAttribute("aria-current",col?"page":"false");
   scrollTo(0,0);onScroll();
+}
+function route(){
+  const h=location.hash.slice(1);
+  if(h.startsWith("car/")){
+    const i=CARS.findIndex(c=>slug(c)===decodeURIComponent(h.slice(4)));
+    if(i<0){location.replace("#collection");return}
+    if(!view)showView(true); // opened from a shared link: show the collection behind it
+    openCar(i);return;
+  }
+  closeDetail();fromSite=false;
+  if(h==="contact"){ if(!view)showView(false); $("contact").scrollIntoView({behavior:reduce?"auto":"smooth"});return }
+  showView(h==="collection");
 }
 addEventListener("hashchange",route);
 
@@ -402,7 +575,7 @@ const logo=$("logo");
 function onScroll(){
   const y=scrollY,h=innerHeight,home=!$("viewHome").hidden;
   $("top").classList.toggle("solid",!home||y>h*.5);
-  if(reduce||!home)return;
+  if(reduce||!home||document.documentElement.classList.contains("r3d"))return; // the 3D logo handles its own scroll effect
   const p=Math.min(y/h,1);
   logo.style.transform="translateZ("+(-p*600)+"px) rotateX("+(p*35)+"deg)";logo.style.opacity=1-p*.9;
 }
@@ -430,6 +603,273 @@ addEventListener("scroll",onScroll,{passive:true});
   frame();
 })();
 render();route();
+</script>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+<script type="module">
+/* 3D intro: chrome Dany Azzam logo over a night road with light trails (three.js).
+   Logo shapes in logo3d.json were traced from the logo PNG. If anything fails, the flat logo shows instead. */
+import * as THREE from "three";
+
+const root = document.documentElement;
+const canvas = document.getElementById("road");
+const intro = document.getElementById("intro");
+const logoBox = document.getElementById("logo");
+
+async function start() {
+  const shapes = await (await fetch("logo3d.json")).json();
+  if (!root.classList.contains("r3d-wait")) return; // too late: the flat logo is already showing
+
+  const small = innerWidth < 760;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
+  renderer.setClearColor(0x000000, 1);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 400);
+  camera.position.set(0, 1.5, 6);
+  camera.lookAt(0, 1.1, -40);
+  scene.add(camera);
+
+  // reflections for the chrome: a black studio with bright softbox strips (high contrast = real-looking chrome)
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  {
+    const studio = new THREE.Scene();
+    studio.background = new THREE.Color(0x050506);
+    const strip = (w, h, color, x, y, z, ry = 0, rx = 0) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+      m.position.set(x, y, z); m.rotation.set(rx, ry, 0); studio.add(m);
+    };
+    strip(30, 2.2, new THREE.Color(6, 6, 6), 0, 6, -8, 0, .5);         // long top light
+    strip(2.5, 14, new THREE.Color(4, 4, 4.2), -9, 1, -2, Math.PI / 2); // left softbox
+    strip(2.5, 14, new THREE.Color(3, 3, 3), 9, 1, -2, -Math.PI / 2);   // right softbox
+    strip(30, 1.2, new THREE.Color(2.4, .25, .2), 0, -3, -8, 0, -.4);   // red glow from the tail lights below
+    strip(30, 5, new THREE.Color(.5, .45, .4), 0, -6, 6, Math.PI, -.6); // dim warm floor bounce
+    strip(40, 9, new THREE.Color(1.1, 1.1, 1.15), 0, 1.5, 10, Math.PI);  // broad soft light behind the viewer (lights the letter faces)
+    strip(40, 1.1, new THREE.Color(7, 7, 7), 0, 2.4, 9.8, Math.PI);      // bright band across it = the chrome highlight line
+    scene.environment = pmrem.fromScene(studio, 0.02).texture;
+  }
+
+  const uniforms = { uTime: { value: 0 }, uTravel: { value: 0 } };
+  const FAR = 220;
+
+  /* ---- road: asphalt with moving lane markings ---- */
+  const road = new THREE.Mesh(
+    new THREE.PlaneGeometry(26, FAR + 20, 1, 1),
+    new THREE.ShaderMaterial({
+      uniforms,
+      transparent: true,
+      vertexShader: `varying vec3 vW; void main(){ vec4 w = modelMatrix*vec4(position,1.0); vW = w.xyz; gl_Position = projectionMatrix*viewMatrix*w; }`,
+      fragmentShader: `
+        uniform float uTravel; varying vec3 vW;
+        float line(float x, float c, float w){ return 1.0 - smoothstep(w*0.4, w, abs(x-c)); }
+        void main(){
+          float z = vW.z - uTravel;
+          float dash = step(0.55, fract(z/6.0));
+          float m = line(vW.x, 0.0, 0.07)*dash;                              // centre dashes
+          m += (line(vW.x, 3.2, 0.05) + line(vW.x, -3.2, 0.05))*step(0.5, fract(z/3.0))*0.6;
+          m += line(vW.x, 6.3, 0.08) + line(vW.x, -6.3, 0.08);               // road edges
+          float fade = 1.0 - smoothstep(8.0, ${FAR.toFixed(1)}, -vW.z + 6.0);
+          vec3 asphalt = vec3(0.018, 0.018, 0.022) + 0.012*sin(vW.x*0.7);
+          vec3 col = asphalt + vec3(0.55, 0.52, 0.45)*m;
+          gl_FragColor = vec4(col*fade, 1.0);
+        }`,
+    })
+  );
+  road.rotation.x = -Math.PI / 2;
+  road.position.z = -FAR / 2 + 6;
+  scene.add(road);
+
+  /* ---- light trails: cars ahead (red, our side) and oncoming (white, other side) ---- */
+  function trails(count, color, lanes, dir, speedMin, speedMax) {
+    // two crossed quads along +z so the trail reads from any angle; position.z = 0 at the head, 1 at the tail
+    const g = new THREE.InstancedBufferGeometry();
+    const P = [-.5,0,0, .5,0,0, .5,0,1, -.5,0,1,  0,-.5,0, 0,.5,0, 0,.5,1, 0,-.5,1];
+    g.setAttribute("position", new THREE.Float32BufferAttribute(P, 3));
+    g.setIndex([0,1,2, 0,2,3, 4,5,6, 4,6,7]);
+    const off = new Float32Array(count * 3), len = new Float32Array(count), spd = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      const pair = i % 2; // each car has two lights
+      const car = (i / 2) | 0;
+      const lane = lanes[car % lanes.length] + (Math.random() - .5) * .5;
+      off[i*3] = lane + (pair ? .45 : -.45);
+      off[i*3+1] = .55 + Math.random() * .1;
+      off[i*3+2] = Math.random() * FAR;            // phase along the road
+      len[i] = 4 + Math.random() * 9;
+      spd[i] = speedMin + Math.random() * (speedMax - speedMin);
+      if (pair) { off[i*3+2] = off[(i-1)*3+2]; len[i] = len[i-1]; spd[i] = spd[i-1]; off[i*3+1] = off[(i-1)*3+1]; }
+    }
+    g.setAttribute("aOff", new THREE.InstancedBufferAttribute(off, 3));
+    g.setAttribute("aLen", new THREE.InstancedBufferAttribute(len, 1));
+    g.setAttribute("aSpd", new THREE.InstancedBufferAttribute(spd, 1));
+    g.instanceCount = count;
+    const m = new THREE.ShaderMaterial({
+      uniforms: { ...uniforms, uColor: { value: new THREE.Color(color) } },
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+      vertexShader: `
+        uniform float uTime; attribute vec3 aOff; attribute float aLen; attribute float aSpd;
+        varying float vAlong; varying float vAcross; varying float vFade;
+        void main(){
+          float head = 8.0 - mod(aOff.z + uTime*aSpd, ${FAR.toFixed(1)});   // runs from z=8 down to -FAR, then wraps
+          ${dir > 0 ? "head = -" + FAR.toFixed(1) + " + 8.0 - head + 8.0;" : ""}
+          vec3 p = vec3(aOff.x + position.x*0.22, aOff.y + position.y*0.22, head + position.z*aLen*${dir > 0 ? "-1.0" : "1.0"});
+          vAlong = position.z; vAcross = (position.x + position.y)*2.0;
+          vFade = smoothstep(-${FAR.toFixed(1)}, -${(FAR*0.55).toFixed(1)}, p.z) * (1.0 - smoothstep(2.0, 9.0, p.z));
+          gl_Position = projectionMatrix*viewMatrix*vec4(p,1.0);
+        }`,
+      fragmentShader: `
+        uniform vec3 uColor; varying float vAlong; varying float vAcross; varying float vFade;
+        void main(){
+          float a = pow(1.0 - vAlong, 1.6) * (1.0 - abs(vAcross)) * vFade;
+          vec3 c = mix(uColor, vec3(1.0), pow(1.0 - vAlong, 6.0)*0.6);   // white-hot head
+          gl_FragColor = vec4(c*a*1.6, a);
+        }`,
+    });
+    const mesh = new THREE.Mesh(g, m);
+    mesh.frustumCulled = false;
+    return mesh;
+  }
+  const n = small ? 36 : 64;
+  scene.add(trails(n, 0xff2a2a, [1.6, 4.8], -1, 10, 22));   // tail lights pulling away (right side, like Lebanon)
+  scene.add(trails(n, 0xfff1d6, [-1.6, -4.8], 1, 40, 60));  // headlights coming toward us
+
+  /* ---- street lamps: warm glows on both sides rushing past ---- */
+  {
+    const count = 2 * 14, pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) { pos[i*3] = i % 2 ? 7.4 : -7.4; pos[i*3+1] = 6.2; pos[i*3+2] = ((i/2)|0) * (FAR/14); }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    const m = new THREE.ShaderMaterial({
+      uniforms: { ...uniforms, uPR: { value: renderer.getPixelRatio() } },
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      vertexShader: `
+        uniform float uTravel, uPR; varying float vFade;
+        void main(){
+          vec3 p = position; p.z = 8.0 - mod(position.z - uTravel, ${FAR.toFixed(1)}); // lamps come toward us as we drive
+          vec4 mv = viewMatrix*vec4(p,1.0);
+          vFade = smoothstep(-${FAR.toFixed(1)}, -${(FAR*0.5).toFixed(1)}, p.z);
+          gl_PointSize = 260.0*uPR/-mv.z;
+          gl_Position = projectionMatrix*mv;
+        }`,
+      fragmentShader: `
+        varying float vFade;
+        void main(){ float d = length(gl_PointCoord-0.5); float a = smoothstep(0.5,0.0,d); a = a*a*vFade*0.55;
+          gl_FragColor = vec4(vec3(1.0,0.62,0.28)*a, a); }`,
+    });
+    const lamps = new THREE.Points(g, m);
+    lamps.frustumCulled = false;
+    scene.add(lamps);
+  }
+
+  /* ---- horizon glow ---- */
+  {
+    const m = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+      fragmentShader: `varying vec2 vUv; void main(){ vec2 d = (vUv-vec2(0.5,0.0))*vec2(1.0,3.2); float a = exp(-dot(d,d)*4.0)*0.32;
+        gl_FragColor = vec4(vec3(0.9,0.42,0.25)*a, a); }`,
+    });
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(260, 60), m);
+    glow.position.set(0, 0, -FAR + 10);
+    scene.add(glow);
+  }
+
+  /* ---- chrome logo, built from the traced shapes (pixel units of the 886px-wide logo) ---- */
+  const chrome = new THREE.MeshPhysicalMaterial({
+    color: 0xffffff, metalness: 1, roughness: 0.12, clearcoat: 1, clearcoatRoughness: 0.05,
+    envMapIntensity: 1.4, emissive: 0xffffff, emissiveIntensity: 0, transparent: true,
+  });
+  function build(part, yOffset) {
+    const list = part.s.map(s => {
+      const pts = a => { const v = []; for (let i = 0; i < a.length; i += 2) v.push(new THREE.Vector2(a[i], a[i+1])); return v; };
+      const shape = new THREE.Shape(pts(s.o));
+      s.h.forEach(h => shape.holes.push(new THREE.Path(pts(h))));
+      return shape;
+    });
+    const geo = new THREE.ExtrudeGeometry(list, { depth: 16, bevelEnabled: true, bevelThickness: 3, bevelSize: 1.4, bevelSegments: 3 });
+    geo.translate(-443, yOffset - 152.5, -8);
+    return new THREE.Mesh(geo, chrome);
+  }
+  const logoInner = new THREE.Group();
+  logoInner.add(build(shapes.swoosh, 149), build(shapes.word, 0)); // same layout as the flat logo: swoosh, 4% gap, wordmark
+  const logo = new THREE.Group();
+  logo.add(logoInner);
+  camera.add(logo);
+
+  // moving coloured lights so the chrome picks up the road's red and white
+  const red = new THREE.PointLight(0xff3030, 0, 0, 0), white = new THREE.PointLight(0xfff0dd, 0, 0, 0);
+  camera.add(red, white);
+
+  /* ---- layout: put the 3D logo exactly where the flat logo would be ---- */
+  const DIST = 12;
+  function layout() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.fov = camera.aspect < 1 ? 50 + (1 - camera.aspect) * 40 : 50; // wider view on tall phone screens so the light trails stay in frame
+    camera.updateProjectionMatrix();
+    const vh = 2 * DIST * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), vw = vh * camera.aspect;
+    const c = canvas.getBoundingClientRect(), r = logoBox.getBoundingClientRect();
+    const s = (r.width / w) * vw / 886;
+    logoInner.scale.setScalar(s);
+    logo.position.set(((r.left + r.width / 2 - c.left) / w - .5) * vw, -((r.top + r.height / 2 - c.top) / h - .5) * vh, -DIST);
+    red.position.set(-vw * .4, -vh * .2, -DIST + 4); white.position.set(vw * .4, vh * .3, -DIST + 5);
+  }
+  addEventListener("resize", layout);
+
+  /* ---- input ---- */
+  const ptr = new THREE.Vector2(), ptrS = new THREE.Vector2();
+  addEventListener("pointermove", e => { ptr.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); }, { passive: true });
+
+  /* ---- loop (paused when the intro is off screen) ---- */
+  let running = true, t0 = performance.now(), last = t0, travel = 0;
+  new IntersectionObserver(e => { const v = e[0].isIntersecting; if (v && !running) { running = true; layout(); last = performance.now(); requestAnimationFrame(frame); } else if (!v) running = false; }).observe(intro);
+  const easeOut = x => 1 - Math.pow(1 - x, 4);
+
+  function frame(now) {
+    if (!running) return;
+    const dt = Math.min((now - last) / 1000, .05); last = now;
+    const t = (now - t0) / 1000;
+    const boost = 1 + 5 * Math.max(0, 1 - t / 2.2) ** 2; // start fast, settle to cruising speed
+    travel += dt * 22 * boost;
+    uniforms.uTime.value += dt * boost;
+    uniforms.uTravel.value = travel;
+
+    // fly-in like the old logo: from far away, turned, then settles
+    const k = easeOut(Math.min(Math.max((t - .2) / 1.8, 0), 1));
+    ptrS.lerp(ptr, 1 - Math.exp(-dt * 3));
+    const scrollP = Math.min(scrollY / innerHeight, 1);
+    logo.position.z = -DIST - (1 - k) * 60 - scrollP * 6;
+    logo.rotation.y = (1 - k) * .65 + ptrS.x * .32 + Math.sin(t * .6) * .05;
+    logo.rotation.x = (1 - k) * .25 - ptrS.y * .18 + scrollP * .6;
+    chrome.opacity = Math.max(0, 1 - scrollP * 1.6); // fade out while scrolling, like the old logo
+    logo.visible = chrome.opacity > 0;
+    // short glint once it lands
+    chrome.emissiveIntensity = Math.max(0, Math.sin(Math.min(Math.max((t - 2.3) / 1.2, 0), 1) * Math.PI)) * .35;
+
+    red.intensity = 2.5 + Math.sin(t * 1.7); white.intensity = 2 + Math.cos(t * 1.3) * .8;
+    red.position.x = -Math.abs(red.position.x) + Math.sin(t * .9) * 1.5;
+
+    camera.position.x = ptrS.x * .35;
+    camera.position.y = 1.5 + ptrS.y * .15 + Math.sin(t * 7) * .004;
+    camera.lookAt(ptrS.x * .6, 1.1, -40);
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+
+  layout();
+  renderer.compile(scene, camera);
+  root.classList.replace("r3d-wait", "r3d");
+  layout(); // the canvas just became visible
+  requestAnimationFrame(frame);
+}
+
+if (root.classList.contains("r3d-wait")) start().catch(err => { console.warn("3D intro off:", err); root.classList.remove("r3d-wait", "r3d"); });
 </script>
 
 </body>
