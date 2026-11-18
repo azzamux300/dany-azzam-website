@@ -15,6 +15,10 @@ Static site, no build step. GitHub Pages deploys `main` automatically to danyazz
 - On the way (bought, still shipping): add `soon:true`. It shows an "On the way" label and the WhatsApp button becomes "Reserve". Remove `soon` when the car arrives.
 - Price: change `price` only.
 
+## Optional car fields
+- `inside:<photo number>` — the front-seats photo. Cards show photos 1, 3, 6 and this one (swipe on phones, hover on computers). If missing, a photo about 60% through the list is used.
+- `brand:"..."` — only if the make isn't the first word(s) of `name`. Brand buttons on the Collection page are built from this.
+
 ## Car links
 Each car has its own link: `danyazzamcars.com/#car/<slug>` (the slug is its photo folder name). Renaming a car's folder breaks links already shared, so don't.
 
