@@ -802,7 +802,8 @@ function openCar(i){
      wa((c.sold?t.msgSold:c.soon?t.msgSoon:t.msg)(carLine(c)))+'">'+I.wa+'<span class="wal">'+(c.sold?t.askSimilar:c.soon?t.reserve:t.ask)+'</span></a>'+
      '<a class="btn" href="tel:+'+PHONE+'">'+I.ph+t.call+'</a></div></div></div>';
   document.body.appendChild(g);document.body.style.overflow="hidden";
-  if(c.km)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known  const tr=$("track"),th=$("thumbs");
+  if(c.km)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known
+  const tr=$("track"),th=$("thumbs");
   $("dclose").onclick=dismiss;$("dclose").focus();
   $("dshare").onclick=async()=>{
     const url=carLink(c),lbl=$("dshare").querySelector("span");
