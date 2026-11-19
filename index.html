@@ -313,6 +313,8 @@ html[dir="rtl"] .sort select{padding:0 16px 0 38px}
 
 /* Gold accent: prices and small details only */
 .cprice{color:var(--gold)}
+.cprice .call{font-size:.72em;letter-spacing:.04em;font-weight:600}
+html[dir="rtl"] .cprice .call{font-family:var(--arabic)}
 .card:hover{border-color:var(--gold-soft)}
 .card:hover .arrow{background:var(--gold);border-color:var(--gold);color:#000}
 .pillar .ic{border-color:var(--gold-soft);color:var(--gold)}
@@ -452,7 +454,7 @@ const T={
    colTitle:"المجموعة",teaserTxt:"سيارات أميركية نظيفة، جاهزة تشوفها وتجرّبها.",viewCol:"شوف كل السيارات",avail:n=>arN(n,"سيارة وحدة متوفرة","سيارتين متوفرين","سيارات متوفرة","سيارة متوفرة"),
    colSub:"اضغط على أي سيارة لتشوف كل الصور والمواصفات.",search:"دوّر حسب الماركة، الموديل أو السنة",found:n=>arN(n,"نتيجة وحدة","نتيجتين","نتائج","نتيجة"),none:"ما لقينا سيارة. جرّب كلمة تانية.",
    photos:n=>arN(n,"صورة وحدة","صورتين","صور","صورة"),clean:"Clean Carfax",close:"سكّر",ask:"اسأل على واتساب",call:"اتصل",
-   specs:["السنة","اللون","اللون من جوّا","المحرك","المسافة","الجير"],tbd:"قريباً",
+   specs:["السنة","اللون","اللون من جوّا","المحرك","المسافة","الجير"],tbd:"قريباً",callPrice:"اتصل للسعر",
    msg:c=>"مرحبا، بدي اسأل عن "+c+".",
    fTag:"وجهتك الموثوقة لسيارات أميركية نظيفة، كارفاكس نظيف.",fQuick:"روابط سريعة",fContact:"تواصل",fFollow:"تابعنا",fCopy:"© 2026 Dany Azzam. جميع الحقوق محفوظة.",
    ig:"إنستغرام",fb:"فيسبوك",tt:"تيك توك",wa:"واتساب",locTxt:"أوتوستراد ميرنا الشالوحي، بعد غاليري الاتحاد"},
@@ -466,13 +468,41 @@ const T={
    colTitle:"The Collection",teaserTxt:"Clean American cars, ready to see and test drive.",viewCol:"View all cars",avail:n=>n+(n===1?" car available":" cars available"),
    colSub:"Tap any car to see every photo and the full specs.",search:"Search by make, model or year",found:n=>n+(n==1?" result":" results"),none:"No cars found. Try another word.",
    photos:n=>n+(n===1?" photo":" photos"),clean:"Clean Carfax",close:"Close",ask:"Ask on WhatsApp",call:"Call",
-   specs:["Year","Color","Interior","Engine","Mileage","Gearbox"],tbd:"Soon",
+   specs:["Year","Color","Interior","Engine","Mileage","Gearbox"],tbd:"Soon",callPrice:"Call for price",
    msg:c=>"Hello, I want to ask about "+c+".",
    fTag:"Your trusted destination for clean-Carfax American cars.",fQuick:"Quick links",fContact:"Contact",fFollow:"Follow us",fCopy:"© 2026 Dany Azzam. All rights reserved.",
    ig:"Instagram",fb:"Facebook",tt:"TikTok",wa:"WhatsApp",locTxt:"Mirna El Chalouhi Highway, after Gallery El Ittihad"}
 };
 const pics=(dir,n)=>Array.from({length:n},(_,i)=>"cars/"+dir+"/"+String(i+1).padStart(2,"0")+".jpg");
 const CARS=[
+ {name:"Honda CR-V",trim:"",year:"",price:19500,mi:0,km:0,
+  color:{ar:"فضي",en:"Silver"},interior:{ar:"أسود",en:"Black"},engine:"",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"honda crv cr-v هوندا سي ار في",photos:pics("crv-silver",17),inside:13,
+  feats:{ar:["كاميرا خلفية","صندوق واسع"],en:["Backup camera","Spacious trunk"]}},
+ {name:"Jeep Grand Cherokee",trim:"Limited",year:"2018",price:21500,mi:134244,km:216000,
+  color:{ar:"رمادي غامق",en:"Dark grey"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.6L V6 · 4x4",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"jeep grand cherokee limited جيب جيب غراند شيروكي جراند شيروكي",photos:pics("grand-cherokee-2018",14),inside:8,
+  feats:{ar:["دفع رباعي 4x4","فتحة سقف","كاميرا خلفية","فرش جلد"],en:["4x4","Sunroof","Backup camera","Leather seats"]}},
+ {name:"Audi Q7",trim:"",year:"",price:null,mi:111530,km:179500,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"audi q7 quattro اودي أودي كيو 7",photos:pics("q7-black",14),inside:8,
+  feats:{ar:["دفع رباعي كواترو","سقف بانوراما","كاميرا خلفية","فرش جلد"],en:["Quattro AWD","Panoramic roof","Backup camera","Leather seats"]}},
+ {name:"Range Rover Velar",trim:"P380 R-Dynamic SE",year:"2018",price:null,mi:74439,km:119800,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 Supercharged",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"p380 land rover range rover velar رينج روفر رنج فيلار لاند روفر",photos:pics("velar-2018-b",14),inside:9,
+  feats:{ar:["كاميرات","عدّادات ديجيتال","شاشتين لمس","فرش جلد"],en:["Cameras","Digital dashboard","Dual touchscreens","Leather seats"]}},
+ {name:"BMW X4",trim:"xDrive30i",year:"2019",price:37000,mi:92636,km:149100,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أحمر",en:"Red leather"},engine:"2.0L Turbo · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"bmw x4 xdrive30i بي ام دبليو بيم اكس 4",photos:pics("x4-2019",15),inside:9,
+  feats:{ar:["باكيج M Sport","سقف بانوراما","كاميرات 360","عدّادات ديجيتال","فرش جلد أحمر"],en:["M Sport package","Panoramic roof","360° cameras","Digital dashboard","Red leather seats"]}},
+ {name:"Toyota Fortuner",trim:"",year:"",price:34000,mi:69033,km:111100,
+  color:{ar:"رمادي",en:"Grey"},interior:{ar:"جلد بني",en:"Tan leather"},engine:"",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"toyota fortuner تويوتا فورتشنر فورتونر",photos:pics("fortuner-grey",15),inside:9,
+  feats:{ar:["7 مقاعد","فرش جلد","شاشة لمس","كاميرا خلفية"],en:["7 seats","Leather seats","Touchscreen","Backup camera"]}},
+ {name:"Mercedes GLC 300",trim:"",year:"2019",price:22000,mi:117055,km:188400,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"2.0L Turbo",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"mercedes benz glc glc300 مرسيدس مرسيدس بنز جي ال سي",photos:pics("glc-2019",16),inside:9,
+  feats:{ar:["سقف بانوراما","كاميرا خلفية","فرش جلد"],en:["Panoramic roof","Backup camera","Leather seats"]}},
  {name:"Porsche Macan",trim:"S",year:"2017",price:26000,mi:113166,km:182100,
   color:{ar:"كحلي",en:"Dark blue"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 Twin-Turbo",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"porsche macan s بورش بورشه ماكان ازرق",photos:pics("macan-s-2017",15),inside:9,
@@ -498,6 +528,9 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const fmt=n=>n.toLocaleString("en-US");
 const val=(c,k)=>{const v=c[k];return v&&typeof v==="object"?v[lang]:v};
 const fullName=c=>c.name+(c.trim?" "+c.trim:"");
+// price:null = "Call for price"; mi/km 0 = mileage not known yet ("Soon")
+const priceHTML=c=>{const t=T[lang];return c.sold?t.sold:c.price?'$'+fmt(c.price):'<span class="call">'+t.callPrice+'</span>'};
+const odoText=c=>c.km?fmt(c.km)+" km · "+fmt(c.mi)+" mi":"";
 const sub=c=>[c.trim,c.year].filter(Boolean).join(" · ");
 const wa=m=>"https://wa.me/"+PHONE+"?text="+encodeURIComponent(m);
 function carLine(c){
@@ -531,8 +564,8 @@ function cardHTML(c){
    statusChip(c)+'<span class="pcount">'+I.cam+t.photos(c.photos.length)+'</span>'+
    (pics.length>1?'<span class="dots">'+pics.map((_,j)=>'<i'+(j?'':' class="on"')+'></i>').join("")+'</span>':'')+'</div>'+
    '<div class="cbody"><h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
-   '<div class="odo">'+I.odo+'<span>'+fmt(c.km)+' km</span><small>· '+fmt(c.mi)+' mi</small></div>'+
-   '<div class="cfoot"><span class="cprice">'+(c.sold?t.sold:'$'+fmt(c.price))+'</span><span class="arrow">'+I.arrow+'</span></div></div></a>';
+   '<div class="odo">'+I.odo+(c.km?'<span>'+fmt(c.km)+' km</span><small>· '+fmt(c.mi)+' mi</small>':'<span>'+t.tbd+'</span>')+'</div>'+
+   '<div class="cfoot"><span class="cprice">'+priceHTML(c)+'</span><span class="arrow">'+I.arrow+'</span></div></div></a>';
 }
 const canHover=matchMedia("(hover:hover) and (pointer:fine)").matches;
 function tilt(){
@@ -553,10 +586,10 @@ function tilt(){
 }
 const SORTS=[
   null,
-  (a,b)=>a.price-b.price,
-  (a,b)=>b.price-a.price,
+  (a,b)=>(a.price||Infinity)-(b.price||Infinity),   // "call for price" goes last
+  (a,b)=>(b.price||-1)-(a.price||-1),
   (a,b)=>(+b.year||0)-(+a.year||0),
-  (a,b)=>a.km-b.km
+  (a,b)=>(a.km||Infinity)-(b.km||Infinity)           // unknown mileage goes last
 ];
 // brand = car field `brand`, or the make at the start of the name (two-word makes handled)
 const TWO_WORD=["range rover","land rover","alfa romeo","aston martin","rolls royce","mercedes benz"];
@@ -625,7 +658,7 @@ function openCar(i){
   const c=CARS[i],t=T[lang],g=document.createElement("div");
   g.dataset.i=i;
   g.className="detail";g.setAttribute("role","dialog");g.setAttribute("aria-modal","true");g.setAttribute("aria-label",fullName(c));
-  const vals=[c.year,val(c,"color"),val(c,"interior"),c.engine,fmt(c.km)+" km · "+fmt(c.mi)+" mi",val(c,"gear")];
+  const vals=[c.year,val(c,"color"),val(c,"interior"),c.engine,odoText(c),val(c,"gear")];
   g.innerHTML='<div class="dbar"><span id="gpos">1 / '+c.photos.length+'</span><button class="dclose" id="dclose">'+t.close+'</button></div><div class="dwrap">'+
    '<div class="dgal"><div class="track" id="track">'+c.photos.map((p,j)=>'<div class="slide" data-z="'+j+'"><img src="'+p+'" alt="'+fullName(c)+' '+(j+1)+'"'+(j>1?' loading="lazy"':'')+'></div>').join("")+'</div>'+
    '<span class="zhint">'+I.zoom+t.zoomHint+'</span>'+
@@ -635,7 +668,7 @@ function openCar(i){
      '<span class="chip" style="position:static">'+I.check+t.clean+'</span></div>'+
    '<div class="dtitle"><h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
      '<button class="share" id="dshare">'+I.share+'<span>'+t.share+'</span></button></div>'+
-   '<div class="cfoot" style="border:0;padding:0"><span class="cprice">'+(c.sold?t.sold:'$'+fmt(c.price))+'</span></div>'+
+   '<div class="cfoot" style="border:0;padding:0"><span class="cprice">'+priceHTML(c)+'</span></div>'+
    '<div class="gauge" id="gauge" aria-hidden="true"></div>'+
    '<div class="feats">'+c.feats[lang].map(f=>"<span>"+f+"</span>").join("")+'</div>'+
    '<div class="specs">'+t.specs.map((s,j)=>"<div><span>"+s+"</span><b"+(j===4||j===3?' class="ltr"':'')+">"+(vals[j]||t.tbd)+"</b></div>").join("")+'</div>'+
@@ -643,7 +676,7 @@ function openCar(i){
      wa((c.sold?t.msgSold:c.soon?t.msgSoon:t.msg)(carLine(c)))+'">'+I.wa+(c.sold?t.askSimilar:c.soon?t.reserve:t.ask)+'</a>'+
      '<a class="btn" href="tel:+'+PHONE+'">'+I.ph+t.call+'</a></div></div></div>';
   document.body.appendChild(g);document.body.style.overflow="hidden";
-  dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here
+  if(c.km)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known
   const tr=$("track"),th=$("thumbs");
   $("dclose").onclick=dismiss;$("dclose").focus();
   $("dshare").onclick=async()=>{
@@ -1356,7 +1389,7 @@ if (can3D) {
   startPillars().catch(err => { console.warn("3D icons off:", err); root.classList.remove("p3d"); });
   startFooterSwoosh().catch(err => { console.warn("3D footer off:", err); root.classList.remove("f3d"); });
   const g = document.getElementById("gauge"); // a car opened before this script loaded (shared link)
-  if (g) { const i = +document.querySelector(".detail").dataset.i; gaugeFor(g, CARS[i]).catch(() => {}); }
+  if (g) { const i = +document.querySelector(".detail").dataset.i; if (CARS[i].km) gaugeFor(g, CARS[i]).catch(() => {}); }
 }
 
 if (root.classList.contains("r3d-wait")) start().catch(err => { console.warn("3D intro off:", err); root.classList.remove("r3d-wait", "r3d"); });
