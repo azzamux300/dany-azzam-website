@@ -476,6 +476,26 @@ const T={
 };
 const pics=(dir,n)=>Array.from({length:n},(_,i)=>"cars/"+dir+"/"+String(i+1).padStart(2,"0")+".jpg");
 const CARS=[
+ {name:"Jeep Grand Cherokee",trim:"Limited",year:"2019",price:23500,mi:132799,km:213700,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.6L V6 · 4x4",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"jeep grand cherokee limited جيب جيب غراند شيروكي جراند شيروكي",photos:pics("grand-cherokee-2019-black",15),inside:11,
+  feats:{ar:["دفع رباعي 4x4","كاميرا خلفية","فرش جلد"],en:["4x4","Backup camera","Leather seats"]}},
+ {name:"BMW X4",trim:"",year:"",price:35000,mi:85656,km:137800,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"bmw x4 بي ام دبليو بيم اكس 4",photos:pics("x4-black-b",9),inside:7,
+  feats:{ar:["عدّادات ديجيتال","فرش جلد"],en:["Digital dashboard","Leather seats"]}},
+ {name:"Range Rover Sport",trim:"HSE",year:"2019",price:37500,mi:71129,km:114500,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L I6 · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"land rover range rover sport hse رينج روفر رنج سبورت لاند روفر",photos:pics("rr-sport-hse-2019",18),inside:12,
+  feats:{ar:["سقف بانوراما","شاشتين لمس","عدّادات ديجيتال","كاميرات","فرش جلد"],en:["Panoramic roof","Dual touchscreens","Digital dashboard","Cameras","Leather seats"]}},
+ {name:"Porsche Macan",trim:"S",year:"2019",price:42700,mi:96105,km:154700,carfax:false,
+  color:{ar:"أزرق",en:"Blue"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 Turbo · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"porsche macan s بورش بورشه ماكان ازرق",photos:pics("macan-s-2019-blue",17),inside:12,
+  feats:{ar:["سبورت كرونو","كاميرا خلفية","جنطات سبور سود","فرش جلد"],en:["Sport Chrono","Backup camera","Black sport wheels","Leather seats"]}},
+ {name:"Jaguar F-Pace",trim:"25t Prestige",year:"2019",price:null,mi:101010,km:162600,carfax:false,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"أسود",en:"Black"},engine:"2.0L Turbo · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"jaguar f-pace fpace جاغوار جاكوار اف بيس",photos:pics("f-pace-2019",12),inside:11,
+  feats:{ar:["عدّادات ديجيتال","دفع رباعي"],en:["Digital dashboard","AWD"]}},
  {name:"Honda CR-V",trim:"",year:"2018",price:19500,mi:118400,km:190500,
   color:{ar:"فضي",en:"Silver"},interior:{ar:"أسود",en:"Black"},engine:"",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"honda crv cr-v هوندا سي ار في",photos:pics("crv-silver",17),inside:13,
@@ -550,6 +570,7 @@ function statusChip(c){
   const t=T[lang];
   if(c.sold)return '<span class="chip sold">'+t.sold+'</span>';
   if(c.soon)return '<span class="chip soon">'+I.truck+t.soon+'</span>';
+  if(c.carfax===false)return ''; // carfax:false = no "Clean Carfax" badge (e.g. the report shows damage)
   return '<span class="chip">'+I.check+t.clean+'</span>';
 }
 
@@ -666,7 +687,7 @@ function openCar(i){
    '<div class="thumbs" id="thumbs">'+c.photos.map((p,j)=>'<button data-j="'+j+'" aria-current="'+(j===0)+'" aria-label="'+(j+1)+'"><img src="'+p+'" alt="" loading="lazy"></button>').join("")+'</div></div>'+
    '<div class="dinfo"><div style="display:flex;gap:8px;flex-wrap:wrap">'+
      (c.sold||c.soon?statusChip(c).replace('class="chip','style="position:static" class="chip'):'')+
-     '<span class="chip" style="position:static">'+I.check+t.clean+'</span></div>'+
+     (c.carfax===false?'':'<span class="chip" style="position:static">'+I.check+t.clean+'</span>')+'</div>'+
    '<div class="dtitle"><h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
      '<button class="share" id="dshare">'+I.share+'<span>'+t.share+'</span></button></div>'+
    '<div class="cfoot" style="border:0;padding:0"><span class="cprice">'+priceHTML(c)+'</span></div>'+
