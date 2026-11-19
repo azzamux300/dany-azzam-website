@@ -354,9 +354,18 @@ html[dir="rtl"] .sort select{padding:0 16px 0 38px}
 .share svg{width:18px;height:18px}
 
 /* Floating WhatsApp */
-.fab{position:fixed;z-index:20;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-end:max(18px,env(safe-area-inset-right,0px));width:60px;height:60px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 8px 28px rgba(0,0,0,.55);transition:transform .25s}
-.fab:hover{transform:scale(1.07)}
-.fab svg{width:32px;height:32px}
+/* floating round button: a 3D start button with "click to text us" on its face (three.js); plain green WhatsApp circle if 3D can't run */
+.fab{position:fixed;z-index:20;bottom:calc(16px + env(safe-area-inset-bottom,0px));inset-inline-end:max(16px,env(safe-area-inset-right,0px));width:70px;height:70px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 28px rgba(0,0,0,.55);transition:transform .25s,box-shadow .25s}
+.fab:hover{transform:scale(1.06)}
+.fab .fabicon{display:grid;place-items:center}
+.fab .fabicon svg{width:34px;height:34px}
+.fab .fabsb{display:none;position:absolute;inset:-7px}
+.fab .fabsb canvas{width:100%;height:100%;display:block}
+.fab.has3d{background:radial-gradient(circle,#111 60%,transparent 62%)}
+.fab.has3d .fabsb{display:block}
+.fab.has3d .fabicon{display:none}
+.fab .fabtxt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.fab.pressed{box-shadow:0 0 0 3px var(--gold),0 0 34px rgba(227,181,107,.6)}
 
 /* Gold accent: prices and small details only */
 .cprice{color:var(--gold)}
@@ -491,7 +500,7 @@ main.vin{animation:viewIn .55s cubic-bezier(.2,.7,.2,1) both}
   <div class="wrap fbottom"><span data-t="fCopy"></span><span>Cars 4 All</span></div>
 </footer>
 
-<a class="fab" id="fab" target="_blank" rel="noopener"></a>
+<a class="fab" id="fab" target="_blank" rel="noopener"><span class="fabsb" id="fabsb" aria-hidden="true"></span><span class="fabicon" id="fabIcon"></span><span class="fabtxt"><small>WhatsApp</small><b data-t="fabTxt"></b></span></a>
 
 <script>
 const PHONE="96170228556", PHONE_TXT="70 228 556";
@@ -531,6 +540,7 @@ const T={
    specs:["السنة","اللون","اللون من جوّا","المحرك","المسافة","الجير"],tbd:"قريباً",callPrice:"اتصل للسعر",
    msg:c=>"مرحبا، بدي اسأل عن "+c+".",
    fTag:"وجهتك الموثوقة لسيارات أميركية نظيفة، كارفاكس نظيف.",fQuick:"روابط سريعة",fContact:"تواصل",fFollow:"تابعنا",
+   fabTxt:"اضغط لتراسلنا",
    navReach:"تواصل معنا",reachTitle:"تواصل معنا",reachSub:"نحنا هون لنجاوب على كل أسئلتك. بعتلنا على واتساب أو اتصل فينا.",
    callUs:"اتصل فينا",waUs:"راسلنا على واتساب",waNote:"منرد بسرعة",formTitle:"بعتلنا رسالة",
    fName:"الاسم",fSubject:"الموضوع",fCar:"السيارة",fMsg:"رسالتك",send:"بعت على واتساب",pick:"اختار",
@@ -550,6 +560,7 @@ const T={
    specs:["Year","Color","Interior","Engine","Mileage","Gearbox"],tbd:"Soon",callPrice:"Call for price",
    msg:c=>"Hello, I want to ask about "+c+".",
    fTag:"Your trusted destination for clean-Carfax American cars.",fQuick:"Quick links",fContact:"Contact",fFollow:"Follow us",
+   fabTxt:"Click to text us",
    navReach:"Reach us",reachTitle:"Get in Touch",reachSub:"We're here for any question. Message us on WhatsApp or give us a call.",
    callUs:"Call us",waUs:"Message us on WhatsApp",waNote:"We reply fast",formTitle:"Send us a message",
    fName:"Full name",fSubject:"Subject",fCar:"Car",fMsg:"Message",send:"Send on WhatsApp",pick:"Select",
@@ -746,7 +757,7 @@ function render(){
   $("sort").innerHTML=t.sorts.map((s,j)=>'<option value="'+j+'">'+s+'</option>').join("");
   $("sort").value=sv;$("sort").setAttribute("aria-label",t.sortLabel);
   $("teaserCount").textContent=t.avail(forSale().length);
-  $("fab").href=wa(lang==="ar"?"مرحبا":"Hello");$("fab").innerHTML=I.wa;$("fab").setAttribute("aria-label",t.wa);
+  $("fab").href=wa(lang==="ar"?"مرحبا":"Hello");$("fabIcon").innerHTML=I.wa;$("fab").setAttribute("aria-label",t.fabTxt+" – "+t.wa);
   $("pillars").innerHTML=t.why.map(w=>'<div class="pillar"><div class="ic">'+I[w[2]]+'</div><h3>'+w[0]+'</h3><p>'+w[1]+'</p></div>').join("");
   const li=(h,ic,txt,cls,blank)=>'<li><a href="'+h+'"'+(blank?' target="_blank" rel="noopener"':'')+'>'+(ic||'')+'<span class="'+(cls||'')+'">'+txt+'</span></a></li>';
   $("fQuickList").innerHTML=li("#home","",t.home)+li("#collection","",t.colTitle)+li("#reach","",t.fContact);
@@ -754,6 +765,7 @@ function render(){
   $("fContactList").innerHTML=li(MAP,I.pin,t.locTxt,"",1)+li("tel:+"+PHONE,I.ph,"(+961) "+PHONE_TXT,"ltr")+li(wa(lang==="ar"?"مرحبا":"Hello"),I.wa,t.wa+' · <span class="ltr">'+PHONE_TXT+'</span>',"",1);
   $("fFollowList").innerHTML=li(IG,I.ig,t.ig,"",1)+li(FB,I.fb,t.fb,"",1)+li(TT,I.tt,t.tt,"",1);
   drawBrands();drawGrid();drawLatest();reveal();
+  dispatchEvent(new Event("da:lang")); // lets the 3D button redraw its label in the new language
   const open=document.querySelector(".detail");
   if(open)openCar(+open.dataset.i); // redraw an open car in the new language
 }
@@ -786,12 +798,11 @@ function openCar(i){
    '<div class="gauge" id="gauge" aria-hidden="true"></div>'+
    '<div class="feats">'+c.feats[lang].map(f=>"<span>"+f+"</span>").join("")+'</div>'+
    '<div class="specs">'+t.specs.map((s,j)=>j===3&&!c.engine?"":"<div><span>"+s+"</span><b"+(j===4||j===3?' class="ltr"':'')+">"+(vals[j]||t.tbd)+"</b></div>").join("")+'</div>'+ // no engine known = no Engine row at all
-   '<div class="btns"><a class="btn solid" target="_blank" rel="noopener" href="'+
-     wa((c.sold?t.msgSold:c.soon?t.msgSoon:t.msg)(carLine(c)))+'">'+I.wa+(c.sold?t.askSimilar:c.soon?t.reserve:t.ask)+'</a>'+
+   '<div class="btns"><a class="btn solid" id="waBtn" target="_blank" rel="noopener" href="'+
+     wa((c.sold?t.msgSold:c.soon?t.msgSoon:t.msg)(carLine(c)))+'">'+I.wa+'<span class="wal">'+(c.sold?t.askSimilar:c.soon?t.reserve:t.ask)+'</span></a>'+
      '<a class="btn" href="tel:+'+PHONE+'">'+I.ph+t.call+'</a></div></div></div>';
   document.body.appendChild(g);document.body.style.overflow="hidden";
-  if(c.km)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known
-  const tr=$("track"),th=$("thumbs");
+  if(c.km)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known  const tr=$("track"),th=$("thumbs");
   $("dclose").onclick=dismiss;$("dclose").focus();
   $("dshare").onclick=async()=>{
     const url=carLink(c),lbl=$("dshare").querySelector("span");
@@ -1501,6 +1512,104 @@ async function gaugeFor(el, c) {
   mountGauge(el, c);
 }
 addEventListener("da:car", e => { if (can3D) gaugeFor(e.detail.el, e.detail.car).catch(err => console.warn("3D gauge off:", err)); });
+
+/* ===== floating "Click to text us" button: a 3D chrome push-start button; pressing it lights up gold, then opens WhatsApp ===== */
+function mountStart(btn, wrap) {
+  if (!btn || !wrap || wrap.dataset.on || !btn.isConnected) return;
+  wrap.dataset.on = "1";
+  const cv = document.createElement("canvas");
+  wrap.appendChild(cv);
+  const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  const scene = new THREE.Scene();
+  scene.environment = studioEnv(renderer);
+  const cam = new THREE.PerspectiveCamera(30, 1, .1, 50);
+  cam.position.set(0, 0, 4.3);
+
+  // cap label: WhatsApp logo + "CLICK TO / TEXT US" (English) or "اضغط / راسلنا" (Arabic); redrawn when the language changes
+  const lc = document.createElement("canvas"); lc.width = lc.height = 512;
+  const x = lc.getContext("2d");
+  const waPath = new Path2D((I.wa.match(/ d="([^"]+)"/) || [])[1] || "");
+  const tex = new THREE.CanvasTexture(lc); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+  function drawLabel() {
+    const g = x.createRadialGradient(256, 210, 20, 256, 256, 256);
+    g.addColorStop(0, "#26262a"); g.addColorStop(1, "#050506");
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+    x.save(); x.translate(256 - 40, 72); x.scale(80 / 24, 80 / 24); x.fillStyle = "#3BC97A"; x.fill(waPath); x.restore();
+    x.textAlign = "center"; x.textBaseline = "middle";
+    if (lang === "ar") {
+      x.fillStyle = "#a6a6ac"; x.font = '600 66px "IBM Plex Sans Arabic", sans-serif'; x.fillText("اضغط", 256, 226);
+      x.fillStyle = "#ffffff"; x.font = '600 118px "IBM Plex Sans Arabic", sans-serif'; x.fillText("راسلنا", 256, 336);
+    } else {
+      x.fillStyle = "#a6a6ac"; x.font = '600 56px "Josefin Sans", sans-serif'; x.fillText("CLICK TO", 256, 222);
+      x.fillStyle = "#ffffff"; x.font = '600 112px "Josefin Sans", sans-serif'; x.fillText("TEXT US", 256, 322);
+    }
+    tex.needsUpdate = true;
+  }
+  drawLabel();
+  addEventListener("da:lang", drawLabel);
+
+  const btnG = new THREE.Group();
+  // chrome bezel (lathe profile, turned to face the camera)
+  const prof = [[.78, 0], [1.0, 0], [1.08, .1], [1.04, .24], [.9, .27], [.82, .16]].map(([r, y]) => new THREE.Vector2(r, y));
+  const bezel = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), chromeMat());
+  bezel.rotation.x = Math.PI / 2;
+  // gold light ring that pulses, and flashes when pressed
+  const ledMat = new THREE.MeshStandardMaterial({ color: 0x3a2a10, emissive: 0xE3B56B, emissiveIntensity: .8, roughness: .4 });
+  const led = new THREE.Mesh(new THREE.TorusGeometry(.8, .028, 12, 96), ledMat);
+  led.position.z = .2;
+  // glossy black cap with the label on top
+  const capSide = new THREE.MeshPhysicalMaterial({ color: 0x0b0b0c, roughness: .35, clearcoat: 1, clearcoatRoughness: .1 });
+  const capTop = new THREE.MeshPhysicalMaterial({ map: tex, roughness: .4, clearcoat: 1, clearcoatRoughness: .08, envMapIntensity: .7 });
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(.74, .76, .22, 72), [capSide, capTop, capSide]);
+  cap.rotation.x = Math.PI / 2; cap.rotation.y = Math.PI * .5; // label upright and facing us
+  cap.position.z = .14;
+  btnG.add(bezel, led, cap);
+  btnG.rotation.x = -.1; // almost face-on, so it reads as a round button
+  scene.add(btnG);
+
+  const size = () => { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); };
+  let pressT = null, busy = false, cleaned = false;
+  btn.classList.add("has3d");
+  btn.addEventListener("click", e => {
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    if (busy) return;
+    busy = true; pressT = performance.now();
+    btn.classList.add("pressed");
+    const href = btn.href;
+    setTimeout(() => {
+      btn.classList.remove("pressed"); busy = false;
+      let w = null;
+      try { w = window.open(href, "_blank"); } catch (err) {}
+      if (w) { try { w.opener = null; } catch (err) {} } else location.href = href; // pop-up blocked (some phones): open WhatsApp in this tab
+    }, 750);
+  });
+  const cleanup = () => { if (cleaned) return; cleaned = true; stop(); renderer.dispose(); renderer.forceContextLoss(); removeEventListener("resize", size); };
+  addEventListener("resize", size);
+  addEventListener("hashchange", () => setTimeout(() => { if (!btn.isConnected) cleanup(); }, 0), { once: true });
+  const stop = whileVisible(wrap, size, (dt, now) => {
+    if (!btn.isConnected) { cleanup(); return false; }
+    const t = now / 1000;
+    let push = 0, flash = 0;
+    if (pressT !== null) {
+      const p = (now - pressT) / 750;
+      if (p >= 1) pressT = null;
+      else { push = p < .15 ? p / .15 : Math.max(0, 1 - (p - .15) / .35); flash = Math.sin(Math.min(p, 1) * Math.PI); }
+    }
+    cap.position.z = .14 - push * .1;
+    ledMat.emissiveIntensity = .55 + .35 * Math.sin(t * 2.4) + flash * 5;
+    btnG.rotation.y = ptrG.x * .14 + (flash ? Math.sin(t * 60) * .02 * flash : 0);
+    btnG.rotation.x = -.1 - ptrG.y * .1;
+    renderer.render(scene, cam);
+  });
+}
+async function startFor(btn, wrap) {
+  try { await Promise.all([document.fonts.load('600 112px "Josefin Sans"'), document.fonts.load('600 118px "IBM Plex Sans Arabic"', "راسلنا")]); } catch (e) {}
+  mountStart(btn, wrap);
+}
+if (can3D) startFor(document.getElementById("fab"), document.getElementById("fabsb")).catch(err => console.warn("3D start button off:", err));
 
 /* ===== chrome swoosh that turns toward your finger / mouse (footer, and the Reach us header) ===== */
 async function startSwoosh(cv, onReady) {
