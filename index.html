@@ -476,6 +476,14 @@ const T={
 };
 const pics=(dir,n)=>Array.from({length:n},(_,i)=>"cars/"+dir+"/"+String(i+1).padStart(2,"0")+".jpg");
 const CARS=[
+ {name:"Land Rover Discovery",trim:"",year:"",price:26000,mi:98287,km:158200,
+  color:{ar:"أبيض",en:"White"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"land rover discovery لاند روفر ديسكفري ديسكوفري ابيض",photos:pics("discovery-white",19),inside:10,
+  feats:{ar:["7 مقاعد","سقف بانوراما","كاميرا خلفية","فرش جلد"],en:["7 seats","Panoramic roof","Backup camera","Leather seats"]}},
+ {name:"Land Rover Discovery",trim:"HSE",year:"2018",price:null,mi:91755,km:147700,
+  color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
+  kw:"land rover discovery hse لاند روفر ديسكفري ديسكوفري اسود",photos:pics("discovery-2018-black",19),inside:11,
+  feats:{ar:["7 مقاعد","سقف بانوراما","كاميرات 360","فرش جلد"],en:["7 seats","Panoramic roof","360° cameras","Leather seats"]}},
  {name:"Jeep Grand Cherokee",trim:"Limited",year:"2019",price:23500,mi:132799,km:213700,
   color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.6L V6 · 4x4",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"jeep grand cherokee limited جيب جيب غراند شيروكي جراند شيروكي",photos:pics("grand-cherokee-2019-black",15),inside:11,
