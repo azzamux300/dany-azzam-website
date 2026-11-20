@@ -537,7 +537,7 @@ const T={
    colTitle:"المجموعة",teaserTxt:"سيارات أميركية نظيفة، جاهزة تشوفها وتجرّبها.",viewCol:"شوف كل السيارات",avail:n=>arN(n,"سيارة وحدة متوفرة","سيارتين متوفرين","سيارات متوفرة","سيارة متوفرة"),
    colSub:"اضغط على أي سيارة لتشوف كل الصور والمواصفات.",search:"دوّر حسب الماركة، الموديل أو السنة",found:n=>arN(n,"نتيجة وحدة","نتيجتين","نتائج","نتيجة"),none:"ما لقينا سيارة. جرّب كلمة تانية.",
    photos:n=>arN(n,"صورة وحدة","صورتين","صور","صورة"),clean:"Clean Carfax",close:"سكّر",ask:"اسأل على واتساب",call:"اتصل",
-   specs:["السنة","اللون","اللون من جوّا","المحرك","المسافة","الجير"],tbd:"قريباً",callPrice:"اتصل للسعر",
+   specs:["السنة","اللون","اللون من جوّا","المحرك","المسافة","الجير"],tbd:"قريباً",callPrice:"اتصل للسعر",miUnit:"ميل",
    msg:c=>"مرحبا، بدي اسأل عن "+c+".",
    fTag:"وجهتك الموثوقة لسيارات أميركية نظيفة، كارفاكس نظيف.",fQuick:"روابط سريعة",fContact:"تواصل",fFollow:"تابعنا",
    fabTxt:"اضغط لتراسلنا",
@@ -557,7 +557,7 @@ const T={
    colTitle:"The Collection",teaserTxt:"Clean American cars, ready to see and test drive.",viewCol:"View all cars",avail:n=>n+(n===1?" car available":" cars available"),
    colSub:"Tap any car to see every photo and the full specs.",search:"Search by make, model or year",found:n=>n+(n==1?" result":" results"),none:"No cars found. Try another word.",
    photos:n=>n+(n===1?" photo":" photos"),clean:"Clean Carfax",close:"Close",ask:"Ask on WhatsApp",call:"Call",
-   specs:["Year","Color","Interior","Engine","Mileage","Gearbox"],tbd:"Soon",callPrice:"Call for price",
+   specs:["Year","Color","Interior","Engine","Mileage","Gearbox"],tbd:"Soon",callPrice:"Call for price",miUnit:"mi",
    msg:c=>"Hello, I want to ask about "+c+".",
    fTag:"Your trusted destination for clean-Carfax American cars.",fQuick:"Quick links",fContact:"Contact",fFollow:"Follow us",
    fabTxt:"Click to text us",
@@ -574,7 +574,7 @@ const CARS=[
   color:{ar:"أبيض",en:"White"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"land rover discovery لاند روفر ديسكفري ديسكوفري ابيض",photos:pics("discovery-white",19),inside:10,
   feats:{ar:["7 مقاعد","سقف بانوراما","كاميرا خلفية","فرش جلد"],en:["7 seats","Panoramic roof","Backup camera","Leather seats"]}},
- {name:"Land Rover Discovery",trim:"HSE",year:"2018",price:null,mi:91755,km:147700,
+ {name:"Land Rover Discovery",trim:"HSE",year:"2018",price:null,mi:91755,km:147700,sold:true,
   color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"land rover discovery hse لاند روفر ديسكفري ديسكوفري اسود",photos:pics("discovery-2018-black",19),inside:11,
   feats:{ar:["7 مقاعد","سقف بانوراما","كاميرات 360","فرش جلد"],en:["7 seats","Panoramic roof","360° cameras","Leather seats"]}},
@@ -594,7 +594,7 @@ const CARS=[
   color:{ar:"أزرق",en:"Blue"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 Turbo · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"porsche macan s بورش بورشه ماكان ازرق",photos:pics("macan-s-2019-blue",17),inside:12,
   feats:{ar:["سبورت كرونو","كاميرا خلفية","جنطات سبور سود","فرش جلد"],en:["Sport Chrono","Backup camera","Black sport wheels","Leather seats"]}},
- {name:"Jaguar F-Pace",trim:"25t Prestige",year:"2019",price:null,mi:101010,km:162600,
+ {name:"Jaguar F-Pace",trim:"25t Prestige",year:"2019",price:null,mi:101010,km:162600,sold:true,
   color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"2.0L Turbo · AWD",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"jaguar f-pace fpace جاغوار جاكوار اف بيس",photos:pics("f-pace-2019",17),inside:11,
   feats:{ar:["سقف بانوراما","كاميرا خلفية","عدّادات ديجيتال","دفع رباعي","فرش جلد"],en:["Panoramic roof","Backup camera","Digital dashboard","AWD","Leather seats"]}},
@@ -606,11 +606,11 @@ const CARS=[
   color:{ar:"رمادي غامق",en:"Dark grey"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.6L V6 · 4x4",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"jeep grand cherokee limited جيب جيب غراند شيروكي جراند شيروكي",photos:pics("grand-cherokee-2018",14),inside:8,
   feats:{ar:["دفع رباعي 4x4","فتحة سقف","كاميرا خلفية","فرش جلد"],en:["4x4","Sunroof","Backup camera","Leather seats"]}},
- {name:"Audi Q7",trim:"",year:"2018",price:null,mi:111530,km:179500,
+ {name:"Audi Q7",trim:"",year:"2018",price:24000,mi:111530,km:179500,
   color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 Supercharged",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"audi q7 quattro اودي أودي كيو 7",photos:pics("q7-black",14),inside:8,
   feats:{ar:["دفع رباعي كواترو","سقف بانوراما","كاميرا خلفية","فرش جلد"],en:["Quattro AWD","Panoramic roof","Backup camera","Leather seats"]}},
- {name:"Range Rover Velar",trim:"P380 R-Dynamic SE",year:"2018",price:null,mi:74439,km:119800,
+ {name:"Range Rover Velar",trim:"P380 R-Dynamic SE",year:"2018",price:33500,mi:74439,km:119800,
   color:{ar:"أسود",en:"Black"},interior:{ar:"جلد أسود",en:"Black leather"},engine:"3.0L V6 Supercharged",gear:{ar:"أوتوماتيك",en:"Automatic"},
   kw:"p380 land rover range rover velar رينج روفر رنج فيلار لاند روفر",photos:pics("velar-2018-b",14),inside:9,
   feats:{ar:["كاميرات","عدّادات ديجيتال","شاشتين لمس","فرش جلد"],en:["Cameras","Digital dashboard","Dual touchscreens","Leather seats"]}},
@@ -653,7 +653,7 @@ const val=(c,k)=>{const v=c[k];return v&&typeof v==="object"?v[lang]:v};
 const fullName=c=>c.name+(c.trim?" "+c.trim:"");
 // price:null = "Call for price"; mi/km 0 = mileage not known yet ("Soon")
 const priceHTML=c=>{const t=T[lang];return c.sold?t.sold:c.price?'$'+fmt(c.price):'<span class="call">'+t.callPrice+'</span>'};
-const odoText=c=>c.km?fmt(c.km)+" km · "+fmt(c.mi)+" mi":"";
+const odoText=c=>c.mi?fmt(c.mi)+" "+T[lang].miUnit:""; // miles only
 const sub=c=>[c.trim,c.year].filter(Boolean).join(" · ");
 const wa=m=>"https://wa.me/"+PHONE+"?text="+encodeURIComponent(m);
 function carLine(c){
@@ -688,7 +688,7 @@ function cardHTML(c){
    statusChip(c)+'<span class="pcount">'+I.cam+t.photos(c.photos.length)+'</span>'+
    (pics.length>1?'<span class="dots">'+pics.map((_,j)=>'<i'+(j?'':' class="on"')+'></i>').join("")+'</span>':'')+'</div>'+
    '<div class="cbody"><h3 class="cname"><b>'+c.name+'</b>'+(sub(c)?'<span>'+sub(c)+'</span>':'')+'</h3>'+
-   '<div class="odo">'+I.odo+(c.km?'<span>'+fmt(c.km)+' km</span><small>· '+fmt(c.mi)+' mi</small>':'<span>'+t.tbd+'</span>')+'</div>'+
+   '<div class="odo">'+I.odo+'<span>'+(c.mi?fmt(c.mi)+' '+t.miUnit:t.tbd)+'</span></div>'+
    '<div class="cfoot"><span class="cprice">'+priceHTML(c)+'</span><span class="arrow">'+I.arrow+'</span></div></div></a>';
 }
 const canHover=matchMedia("(hover:hover) and (pointer:fine)").matches;
@@ -713,7 +713,7 @@ const SORTS=[
   (a,b)=>(a.price||Infinity)-(b.price||Infinity),   // "call for price" goes last
   (a,b)=>(b.price||-1)-(a.price||-1),
   (a,b)=>(+b.year||0)-(+a.year||0),
-  (a,b)=>(a.km||Infinity)-(b.km||Infinity)           // unknown mileage goes last
+  (a,b)=>(a.mi||Infinity)-(b.mi||Infinity)           // unknown mileage goes last
 ];
 // brand = car field `brand`, or the make at the start of the name (two-word makes handled)
 const TWO_WORD=["range rover","land rover","alfa romeo","aston martin","rolls royce","mercedes benz"];
@@ -802,7 +802,7 @@ function openCar(i){
      wa((c.sold?t.msgSold:c.soon?t.msgSoon:t.msg)(carLine(c)))+'">'+I.wa+'<span class="wal">'+(c.sold?t.askSimilar:c.soon?t.reserve:t.ask)+'</span></a>'+
      '<a class="btn" href="tel:+'+PHONE+'">'+I.ph+t.call+'</a></div></div></div>';
   document.body.appendChild(g);document.body.style.overflow="hidden";
-  if(c.km)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known
+  if(c.mi)dispatchEvent(new CustomEvent("da:car",{detail:{el:$("gauge"),car:c}})); // 3D speedometer (three.js) mounts here, only when the mileage is known
   const tr=$("track"),th=$("thumbs");
   $("dclose").onclick=dismiss;$("dclose").focus();
   $("dshare").onclick=async()=>{
@@ -1424,7 +1424,7 @@ function mountGauge(el, c) {
   const cam = new THREE.PerspectiveCamera(28, 1, .1, 50);
   cam.position.set(0, 0, 5.3);
 
-  const max = Math.max(300000, Math.ceil(c.km / 50000) * 50000);
+  const max = Math.max(200000, Math.ceil(c.mi / 50000) * 50000); // dial in miles
   const fmtN = n => Math.round(n).toLocaleString("en-US");
   // dial face drawn in 2D for crisp numbers
   const S = 1024, fc = document.createElement("canvas"); fc.width = fc.height = S;
@@ -1440,8 +1440,8 @@ function mountGauge(el, c) {
     x.save(); x.lineCap = "round"; x.lineWidth = 16; x.strokeStyle = "#E3B56B"; x.shadowColor = "rgba(227,181,107,.8)"; x.shadowBlur = 26;
     if (f > .002) { x.beginPath(); x.arc(C, C, R * .965, ang(0), ang(f)); x.stroke(); }
     x.restore();
-    for (let v = 0; v <= max; v += 10000) {
-      const major = v % 50000 === 0, a = ang(v / max), r1 = R * (major ? .79 : .85), r2 = R * .92;
+    for (let v = 0; v <= max; v += 5000) {
+      const major = v % 25000 === 0, a = ang(v / max), r1 = R * (major ? .79 : .85), r2 = R * .92;
       x.strokeStyle = v <= km ? "#E3B56B" : major ? "#f2f2f2" : "#6c6c70"; x.lineWidth = major ? 7 : 3;
       x.beginPath(); x.moveTo(C + Math.cos(a) * r1, C + Math.sin(a) * r1); x.lineTo(C + Math.cos(a) * r2, C + Math.sin(a) * r2); x.stroke();
       if (major) {
@@ -1451,16 +1451,14 @@ function mountGauge(el, c) {
     }
     x.textAlign = "center"; x.textBaseline = "alphabetic";
     x.fillStyle = "#8c8c90"; x.font = '400 34px "Josefin Sans", sans-serif';
-    x.fillText("× 1000 KM", C, C + R * .27);
+    x.fillText("× 1000 MILES", C, C + R * .27);
     if (c.year) { x.fillStyle = "#bdbdc2"; x.font = '400 46px "Josefin Sans", sans-serif'; x.fillText(c.year, C, C - R * .3); }
     // digital odometer
     x.fillStyle = "rgba(255,255,255,.06)"; x.strokeStyle = "rgba(255,255,255,.14)"; x.lineWidth = 2;
     const bw = R * 1.02, bh = 112, by = C + R * .42;
     x.beginPath(); x.roundRect ? x.roundRect(C - bw / 2, by, bw, bh, 18) : x.rect(C - bw / 2, by, bw, bh); x.fill(); x.stroke();
     x.fillStyle = "#ffffff"; x.font = '600 66px "Josefin Sans", sans-serif';
-    x.fillText(fmtN(km) + " km", C, by + 74);
-    x.fillStyle = "#8c8c90"; x.font = '400 34px "Josefin Sans", sans-serif';
-    x.fillText(fmtN(km / 1.609344) + " mi", C, by + bh + 50);
+    x.fillText(fmtN(km) + " mi", C, by + 74);
     faceTex.needsUpdate = true;
   }
 
@@ -1498,10 +1496,10 @@ function mountGauge(el, c) {
     if (!el.isConnected) { cleanup(); return false; }
     if (!done) {
       const p = Math.max(0, Math.min((now - t0) / 1800, 1)), f = easeOutBack(p);
-      const km = c.km * Math.min(f, 1);
-      needle.rotation.z = -ang(Math.min(c.km * f / max, 1.02));
+      const km = c.mi * Math.min(f, 1);
+      needle.rotation.z = -ang(Math.min(c.mi * f / max, 1.02));
       drawFace(km);
-      if (p >= 1) { done = true; drawFace(c.km); needle.rotation.z = -ang(c.km / max); }
+      if (p >= 1) { done = true; drawFace(c.mi); needle.rotation.z = -ang(c.mi / max); }
     }
     dial.rotation.y = ptrG.x * .22 + Math.sin(now / 1400) * .04;
     dial.rotation.x = -ptrG.y * .16 - .06;
@@ -1650,7 +1648,7 @@ if (can3D) {
   const rs = document.getElementById("rswoosh");
   startSwoosh(rs, () => rs.classList.add("on")).catch(err => { console.warn("3D reach swoosh off:", err); rs && rs.classList.remove("on"); });
   const g = document.getElementById("gauge"); // a car opened before this script loaded (shared link)
-  if (g) { const i = +document.querySelector(".detail").dataset.i; if (CARS[i].km) gaugeFor(g, CARS[i]).catch(() => {}); }
+  if (g) { const i = +document.querySelector(".detail").dataset.i; if (CARS[i].mi) gaugeFor(g, CARS[i]).catch(() => {}); }
 }
 
 if (root.classList.contains("r3d-wait")) start().catch(err => { console.warn("3D intro off:", err); root.classList.remove("r3d-wait", "r3d"); });
